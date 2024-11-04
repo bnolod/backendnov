@@ -39,6 +39,6 @@ export class BooksService {
 
   remove(id: number) {
     this.books = this.books.filter(book => book.id !== id);
-    return `removed book with id ${id}`;
+    return {StatusCode: 204, Message: 'No Content'}; ;
   }
 }
