@@ -12,8 +12,9 @@ export class BooksService {
   ];
 
   create(createBookDto: CreateBookDto) {
-    this.books.push(new Book(this.books.length+1, createBookDto.title, createBookDto.author, createBookDto.isbn, createBookDto.publishYear, false));
-    return {StatusCode: 201, Message: 'Created'};
+    var book = new Book(this.books.length+1, createBookDto.title, createBookDto.author, createBookDto.isbn, createBookDto.publishYear, false)
+    this.books.push(book);
+    return {book: book};
   }
 
 
@@ -32,13 +33,13 @@ export class BooksService {
       book.author = updateBookDto.author;
       book.isbn = updateBookDto.isbn;
       book.publishYear = updateBookDto.publishYear;
-      return {StatusCode: 200, Message: 'OK', book: book};
+      return {book: book};
     }
     
   }
 
   remove(id: number) {
     this.books = this.books.filter(book => book.id !== id);
-    return {StatusCode: 204, Message: 'No Content'}; ;
+    return ;
   }
 }
